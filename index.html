@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>할 일 목록</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 헤더 섹션 -->
+    <header class="app-header">
+      <div class="header-top">
+        <h1 class="app-title">할 일 목록</h1>
+        <span class="today-date" id="currentDate"></span>
+      </div>
+
+      <!-- 진행률 바 -->
+      <div class="progress-card">
+        <div class="progress-header">
+          <span class="progress-label">달성률</span>
+          <span class="progress-percent" id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+        </div>
+        <div class="progress-stats">
+          <span>남은 할 일: <strong id="pendingCount">0</strong></span>
+          <span>완료: <strong id="completedCount">0</strong></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 입력 폼 섹션 -->
+    <section class="input-section">
+      <form id="todoForm" class="todo-form">
+        <input 
+          type="text" 
+          id="todoInput" 
+          placeholder="할 일을 입력하세요" 
+          autocomplete="off"
+          maxlength="100"
+        >
+        <button type="submit" class="btn-add" id="addBtn">추가</button>
+      </form>
+    </section>
+
+    <!-- 필터 및 제어 바 -->
+    <section class="filter-section">
+      <div class="filter-tabs">
+        <button class="tab-btn active" data-filter="all">전체 <span class="tab-count" id="countAll">0</span></button>
+        <button class="tab-btn" data-filter="pending">진행 중 <span class="tab-count" id="countPending">0</span></button>
+        <button class="tab-btn" data-filter="completed">완료됨 <span class="tab-count" id="countCompleted">0</span></button>
+      </div>
+
+      <button class="btn-clear-completed" id="clearCompletedBtn" type="button">
+        완료 항목 삭제
+      </button>
+    </section>
+
+    <!-- 할 일 리스트 -->
+    <main class="list-container">
+      <ul id="todoList" class="todo-list">
+        <!-- JS로 동적 렌더링 -->
+      </ul>
+
+      <!-- 빈 목록 안내 뷰 (한 줄 가운데 정렬) -->
+      <div id="emptyState" class="empty-state">
+        <p class="empty-desc">오늘은 비어있습니다</p>
+      </div>
+    </main>
+
+    <!-- 리스트 하단 실시간 상태 바 -->
+    <div class="bottom-status-bar">
+      <span>남은 할 일: <strong id="bottomRemainingCount">0</strong>개</span>
+    </div>
+  </div>
+
+  <!-- 토스트 알림 -->
+  <div id="toast" class="toast-popup" role="alert" aria-live="polite">
+    <span id="toastText" class="toast-text">이미 있는 할일이에요</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
